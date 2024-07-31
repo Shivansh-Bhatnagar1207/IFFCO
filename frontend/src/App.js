@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Welcome from './components/Welcome';
 import Project from './components/Project';
-import Task from './components/Task';
+import Report from './components/Report';
+import Todo from './components/Todo';
 
 function App() {
   return (
@@ -16,7 +16,8 @@ function App() {
           <Route path='/*' element={<Home/>}/>
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/project' element={<Project />} />
-          <Route path='/task' element={<Task />} />
+          <Route path='/task' element={<Todo />} />
+          <Route path='/report' element={<Report/>} />
         </Routes>
       </Router>
     </div>

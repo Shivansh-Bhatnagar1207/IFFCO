@@ -35,7 +35,7 @@ const Dashboard = () => {
       </header>
       <section>
         <h2 className="p-3 text-2xl font-bold ">Projects</h2>
-        <hr className='h-px bg-gray-300 border-0'/>
+        <hr className="h-px bg-gray-300 border-0" />
         <div className="grid gap-3 px-5 my-4 ">
           {project_list.map((project, i) => (
             <ProjectCards

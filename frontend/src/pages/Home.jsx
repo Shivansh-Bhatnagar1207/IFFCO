@@ -46,17 +46,14 @@ const Home = () => {
           <FaTasks size={40} className="border border-black p-1 rounded" />
           <span>Tasks</span>
           <Link
-            to={"/tasks"}
+            to={"/task"}
             className="bg-pri rounded p-1.5 text-white hover:bg-sec"
           >
             Click here
           </Link>
         </div>
         <div className="border border-black rounded-md h-full w-full p-2 bg-accent flex flex-col items-center gap-1.5">
-          <TbReport
-            size={40}
-            className="border border-black p-1 rounded"
-          />
+          <TbReport size={40} className="border border-black p-1 rounded" />
           <span>Reports</span>
           <Link
             to={"/report"}
