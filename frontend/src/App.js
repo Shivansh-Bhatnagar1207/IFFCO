@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import Project from './components/Project';
 import Report from './components/Report';
 import Todo from './components/Todo';
+import NewReport from './components/NewReport';
+import ReportDetials from './components/ReportDetials';
+
 
 function App() {
   return (
@@ -13,11 +16,13 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/*' element={<Home/>}/>
+          <Route path='/*' element={<Home />} />
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/project' element={<Project />} />
           <Route path='/task' element={<Todo />} />
-          <Route path='/report' element={<Report/>} />
+          <Route path='/report' element={<Report />} />
+          <Route path='/newreport' element={<NewReport />} />
+          <Route path='/reportdetail' element={<ReportDetials />} />
         </Routes>
       </Router>
     </div>

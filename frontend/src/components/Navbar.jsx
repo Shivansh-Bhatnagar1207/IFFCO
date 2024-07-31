@@ -3,12 +3,13 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { FaTasks } from "react-icons/fa";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport } from "react-icons/tb";
-import { CgProfile } from "react-icons/cg";
+import { CgHome, CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { GoProjectRoadmap } from "react-icons/go";
 
 const Navbar = () => {
   const menus = [
+    { name: "Home", link: "/", icon: CgHome },
     { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Project", link: "/project", icon: GoProjectRoadmap },
     { name: "Tasks", link: "/task", icon: FaTasks },

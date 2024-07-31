@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectForm from "./Form";
+import Form from "./Form";
 
 export default function Project() {
   return (
@@ -10,8 +10,7 @@ export default function Project() {
       <section>
         <h2 className="p-3 text-2xl font-bold ">New Project</h2>
         <hr className="h-px bg-gray-300 border-0" />
-
-        <ProjectForm />
+        <Form />
       </section>
     </div>
   );

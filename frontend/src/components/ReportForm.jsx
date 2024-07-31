@@ -29,7 +29,7 @@ export default function ReportForm() {
         <textarea placeholder="  Project Description" rows={5} />
         <button
           type="submit"
-          className="bg-sec rounded p-3 col-span-2 text-white font-semibold hover:bg-pri "
+          className="bg-pri rounded p-3 col-span-2 text-white font-semibold hover:bg-sec "
         >
           submit
         </button>

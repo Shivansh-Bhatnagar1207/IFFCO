@@ -37,7 +37,7 @@ const Todoitems = ({ no, display, text, setTodos }) => {
           <img src={tick} alt="Tick" />
         )}
 
-        <div id="todoitems-text" className="w-[70vw] overflow-hidden">{text}</div>
+        <div id="todoitems-text" className="max-w-[77vw] overflow-hidden">{text}</div>
       </div>
       <img
         id="todoitems-cross-icons"
