@@ -7,25 +7,37 @@ export default function ReportDetials() {
       title: "xyz",
       head: "kakashi",
       desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      status: "Pending",
+      type: "Pending",
+      TeamId: "ABC123",
+      Start: "01-01-2024",
+      End: "01-12-2024",
     },
     {
       title: "abc",
       head: "roshi",
       desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      status: "Pending",
+      type: "Pending",
+      TeamId: "ABC123",
+      Start: "01-01-2024",
+      End: "01-12-2024",
     },
     {
       title: "shi",
       head: "rimaru",
       desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      status: "Pending",
+      type: "Pending",
+      TeamId: "ABC123",
+      Start: "01-01-2024",
+      End: "01-12-2024",
     },
     {
       title: "ays",
       head: "boa",
       desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      status: "Pending",
+      type: "Pending",
+      TeamId: "ABC123",
+      Start: "01-01-2024",
+      End: "01-12-2024",
     },
   ];
   return (
@@ -43,10 +55,12 @@ export default function ReportDetials() {
               title={dat.title}
               head={dat.head}
               desc={dat.desc}
-              status={dat.status}
+              type={dat.type}
+              TeamId={dat.TeamId}
+              start={dat.Start}
+              end= {dat.End}
             />
           ))}
-          
         </div>
       </section>
     </div>
