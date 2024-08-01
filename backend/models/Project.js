@@ -18,6 +18,9 @@ const Project = new Schema({
     },
     Description: {
         type: String,
+    },
+    Status: {
+        type: String
     }
 })
 

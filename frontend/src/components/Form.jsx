@@ -17,7 +17,8 @@ export default function ProjectForm() {
       name === "Start_date" ||
       name === "End_date" ||
       name === "Project_head" ||
-      name === "Description"
+      name === "Description" ||
+      name === "Status"
     ) {
       setFormData((prevData) => ({
         ...prevData,
@@ -68,6 +69,7 @@ export default function ProjectForm() {
         <input
           type="text"
           name="Start_date"
+          placeholder="Start Date"
           id="start"
           value={formData.Start_date}
           onChange={handleChange}
@@ -77,6 +79,7 @@ export default function ProjectForm() {
           type="text"
           name="End_date"
           id="end"
+          placeholder="End Date"
           value={formData.End_date}
           onChange={handleChange}
         />
@@ -96,6 +99,12 @@ export default function ProjectForm() {
           value={formData.Description}
           onChange={handleChange}
         />
+        <label>Status</label>
+        <select name="Status" id="Status" value={formData.Status} onChange={handleChange}>
+          <option value="Pending">Pending</option>
+          <option value="Working">Working</option>
+          <option value="On-Hold">on-Hold</option>
+        </select>
         <button
           type="submit"
           className="bg-sec rounded p-3 col-span-2 text-white font-semibold "
