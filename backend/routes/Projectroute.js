@@ -3,7 +3,7 @@ const { createProject, getProject, deleteProject } = require('../controllers/Pro
 
 const router = express.Router()
 
-router.post('/project/', createProject)
+router.post('/', createProject)
 router.get('/dashboard', getProject)
 router.delete('/dashboard/:id', deleteProject)
 

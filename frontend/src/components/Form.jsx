@@ -9,6 +9,7 @@ export default function ProjectForm() {
     End_date: "",
     Project_head: "",
     Description: "",
+    Status: "Pending",
   });
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -100,14 +101,19 @@ export default function ProjectForm() {
           onChange={handleChange}
         />
         <label>Status</label>
-        <select name="Status" id="Status" value={formData.Status} onChange={handleChange}>
+        <select
+          name="Status"
+          id="Status"
+          value={formData.Status}
+          onChange={handleChange}
+        >
           <option value="Pending">Pending</option>
           <option value="Working">Working</option>
           <option value="On-Hold">on-Hold</option>
         </select>
         <button
           type="submit"
-          className="bg-sec rounded p-3 col-span-2 text-white font-semibold "
+          className="bg-pri hover:bg-sec rounded p-3 col-span-2 text-white font-semibold "
         >
           submit
         </button>

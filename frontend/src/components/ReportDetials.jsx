@@ -1,45 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReportCard from "./ReportCard";
+import { useReportContext } from "../hooks/UseReportContext";
 
 export default function ReportDetials() {
-  const data = [
-    {
-      title: "xyz",
-      head: "kakashi",
-      desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      type: "Pending",
-      TeamId: "ABC123",
-      Start: "01-01-2024",
-      End: "01-12-2024",
-    },
-    {
-      title: "abc",
-      head: "roshi",
-      desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      type: "Pending",
-      TeamId: "ABC123",
-      Start: "01-01-2024",
-      End: "01-12-2024",
-    },
-    {
-      title: "shi",
-      head: "rimaru",
-      desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      type: "Pending",
-      TeamId: "ABC123",
-      Start: "01-01-2024",
-      End: "01-12-2024",
-    },
-    {
-      title: "ays",
-      head: "boa",
-      desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur molestias eum velit, fuga voluptate blanditiis. Soluta earum accusamus aliquid quisquam quibusdam tempore. Modi, veniam nam. Perferendis excepturi rerum et veritatis.",
-      type: "Pending",
-      TeamId: "ABC123",
-      Start: "01-01-2024",
-      End: "01-12-2024",
-    },
-  ];
+  const { Report, dispatch } = useReportContext();
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await fetch("/report/reportdetail");
+        if (!response) {
+          throw new Error("Failed to Fetch Report");
+        }
+        const json = await response.json();
+        dispatch({ type: "SET_REPORT", payload: json });
+      } catch (error) {
+        console.error("Error Fetching Report", error);
+      }
+    };
+    fetchdata();
+  }, [dispatch]);
+
   return (
     <div className="w-screen h-screen bg-bgc overflow-auto ">
       <header className="bg-pri h-[8vh] font-bold text-white p-2 text-xl sticky top-0">
@@ -49,17 +29,8 @@ export default function ReportDetials() {
         <h2 className="p-3 text-2xl font-bold ">Report</h2>
         <hr className="h-px bg-gray-300 border-0" />
         <div className="grid gap-3 px-5 my-4">
-          {data.map((dat, i) => (
-            <ReportCard
-              key={i}
-              title={dat.title}
-              head={dat.head}
-              desc={dat.desc}
-              type={dat.type}
-              TeamId={dat.TeamId}
-              start={dat.Start}
-              end= {dat.End}
-            />
+          {Report.map((data) => (
+            <ReportCard key={data._id} Report={data} />
           ))}
         </div>
       </section>

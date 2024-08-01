@@ -10,7 +10,7 @@ import { GoProjectRoadmap } from "react-icons/go";
 const Navbar = () => {
   const menus = [
     { name: "Home", link: "/", icon: CgHome },
-    { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
+    { name: "Dashboard", link: "/project/dashboard", icon: MdOutlineDashboard },
     { name: "Project", link: "/project", icon: GoProjectRoadmap },
     { name: "Tasks", link: "/task", icon: FaTasks },
     { name: "Report", link: "/report", icon: TbReport },

@@ -3,13 +3,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Report = new Schema({
-    Report_type: String,
-    Project_name: String,
-    Start_Date: Date,
-    End_Date: Date,
-    Project_Head: String,
-    Team_ID: String,
-    Description: String
+    Report_Type: {
+        type: String,
+    },
+    Project_Name: { type: String, },
+    Start_date: { type: String, },
+    End_date: { type: String, },
+    Project_Head: { type: String, },
+    TeamID: { type: String, },
+    Description: { type: String, },
 })
 
 module.exports = mongoose.model('Report', Report)

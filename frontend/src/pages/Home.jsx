@@ -23,7 +23,7 @@ const Home = () => {
           />
           <span>Dashboard</span>
           <Link
-            to={"/dashboard"}
+            to={"/project/dashboard"}
             className="bg-pri rounded p-1.5 text-white hover:bg-sec"
           >
             Click here

@@ -11,6 +11,7 @@ const cors = require('cors')
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 
 app.use((req, res, next) => {
@@ -18,7 +19,8 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/', ProjectRoutes)
+app.use('/project', ProjectRoutes)
+app.use('/report', ReportRoutes)
 
 
 mongoose.connect(process.env.MONGO_URI).then(() => {

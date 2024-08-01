@@ -8,13 +8,13 @@ export default function Report() {
       </header>
       <section className="flex justify-center items-center h-[90vh] gap-20">
         <Link
-          to="/newreport"
+          to="/report/newreport"
           className="h-44 w-44 bg-pri text-white text-xl font-semibold grid place-items-center rounded-md hover:bg-sec"
         >
           New Report
         </Link>
         <Link
-          to="/reportdetail"
+          to="/report/reportdetail"
           className="h-44 w-44 bg-pri text-white text-xl font-semibold grid place-items-center rounded-md hover:bg-sec"
         >
           Report Detail

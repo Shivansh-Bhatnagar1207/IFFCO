@@ -17,12 +17,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/*' element={<Home />} />
-          <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/project/Dashboard' element={<Dashboard />} />
           <Route path='/project' element={<Project />} />
           <Route path='/task' element={<Todo />} />
           <Route path='/report' element={<Report />} />
-          <Route path='/newreport' element={<NewReport />} />
-          <Route path='/reportdetail' element={<ReportDetials />} />
+          <Route path='/report/newreport' element={<NewReport />} />
+          <Route path='/report/reportdetail' element={<ReportDetials />} />
         </Routes>
       </Router>
     </div>

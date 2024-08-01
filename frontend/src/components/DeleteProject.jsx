@@ -3,7 +3,7 @@ import React from "react";
 export default function DeleteProject({ Project }) {
   const handleDeleteProject = async () => {
     try {
-      const response = await fetch(`/dashboard/${Project._id}`, {
+      const response = await fetch(`/project/dashboard/${Project._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
