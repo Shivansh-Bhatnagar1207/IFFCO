@@ -29,9 +29,11 @@ export default function ReportDetials() {
         <h2 className="p-3 text-2xl font-bold ">Report</h2>
         <hr className="h-px bg-gray-300 border-0" />
         <div className="grid gap-3 px-5 my-4">
-          {Report.map((data) => (
-            <ReportCard key={data._id} Report={data} />
-          ))}
+          {Report && Report.length > 0 ? (
+            Report.map((data) => <ReportCard key={data._id} Report={data} />)
+          ) : (
+            <p>No Report Made</p>
+          )}
         </div>
       </section>
     </div>

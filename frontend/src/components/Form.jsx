@@ -13,13 +13,27 @@ export default function ProjectForm() {
   });
   const handleChange = (e) => {
     const { name, value, type } = e.target;
+
+    if (name === "Start_date" || name === "End_date") {
+      const startDate =
+        name === "Start_date" ? new Date(value) : new Date(formData.Start_date);
+      const endDate =
+        name === "End_date" ? new Date(value) : new Date(formData.End_date);
+
+      if (startDate > endDate) {
+        alert("Start date should be less than or equal to the end date.");
+        return;
+      }
+    }
+
     if (
+      name === "Report_Type" ||
       name === "Project_Name" ||
       name === "Start_date" ||
       name === "End_date" ||
-      name === "Project_head" ||
-      name === "Description" ||
-      name === "Status"
+      name === "Project_Head" ||
+      name === "TeamID" ||
+      name === "Description"
     ) {
       setFormData((prevData) => ({
         ...prevData,
@@ -68,7 +82,7 @@ export default function ProjectForm() {
         />
         <label>Start Date</label>
         <input
-          type="text"
+          type="date"
           name="Start_date"
           placeholder="Start Date"
           id="start"
@@ -77,7 +91,7 @@ export default function ProjectForm() {
         />
         <label>End Date</label>
         <input
-          type="text"
+          type="date"
           name="End_date"
           id="end"
           placeholder="End Date"
@@ -89,7 +103,7 @@ export default function ProjectForm() {
           type="text"
           placeholder="Project head"
           name="Project_head"
-          value={formData.Project_head}
+          value={formData.Project_Head}
           onChange={handleChange}
         />
         <label>Description</label>

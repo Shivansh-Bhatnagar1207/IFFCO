@@ -1,7 +1,26 @@
 import React from "react";
-import DeleteReport from "./DeleteReport";
-
+import {useReportContext} from '../hooks/UseReportContext'
 export default function ReportCard({ Report }) {
+  const {dispatch} = useReportContext()
+  const handleDeleteReport = async () => {
+    try {
+      const response = await fetch(`/report/reportdetail/${Report._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const json = await response.json()
+      if (response.ok) {
+        dispatch({type : "DELETE_REPORT" , payload : json})
+        alert("Report Deleted Successfully");
+        window.location.reload()
+      }
+    } catch (error) {
+      console.error("Error in deleting Report :", error);
+      alert("Error in Deleting Report");
+    }
+  };
   const {
     Report_Type,
     Project_Name,
@@ -27,7 +46,12 @@ export default function ReportCard({ Report }) {
       <p className="p-2 w-[80vw] ">{Description}</p>
       <span className="float-right ">{Report_Type}</span>
       <button>
-        <DeleteReport Report={Report} />
+      <button
+        className="border-black border rounded-md p-0.5 font-semibold bg-bgc hover:bg-red-500 "
+        onClick={handleDeleteReport}
+      >
+        DELETE
+      </button>
       </button>
     </div>
   );

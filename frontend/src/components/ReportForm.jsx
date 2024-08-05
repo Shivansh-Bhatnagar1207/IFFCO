@@ -4,7 +4,7 @@ import { useReportContext } from "../hooks/UseReportContext";
 export default function ReportForm() {
   const { dispatch } = useReportContext();
   const [formData, setFormData] = useState({
-    Report_Type: "",
+    Report_Type: "TASK SUMMARY",
     Project_Name: "",
     Start_date: "",
     End_date: "",
@@ -15,6 +15,20 @@ export default function ReportForm() {
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
+
+    if (name === "Start_date" || name === "End_date") {
+      // Ensure both dates are valid before performing the check
+      const startDate =
+        name === "Start_date" ? new Date(value) : new Date(formData.Start_date);
+      const endDate =
+        name === "End_date" ? new Date(value) : new Date(formData.End_date);
+
+      if (startDate > endDate) {
+        alert("Start date should be less than or equal to the end date.");
+        return; // Early exit if the validation fails
+      }
+    }
+
     if (
       name === "Report_Type" ||
       name === "Project_Name" ||
@@ -33,6 +47,27 @@ export default function ReportForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const {
+      Report_Type,
+      Project_Name,
+      Start_date,
+      End_date,
+      Project_Head,
+      TeamID,
+      Description,
+    } = formData;
+    if (
+      !Report_Type ||
+      !Project_Name ||
+      !Start_date ||
+      !End_date ||
+      !Project_Head ||
+      !TeamID ||
+      !Description
+    ) {
+      alert("Please fill in all fields.");
+      return;
+    }
 
     const response = await fetch("/report/newreport/", {
       method: "POST",
@@ -85,7 +120,7 @@ export default function ReportForm() {
         />
         <label>Start Date</label>
         <input
-          type="text"
+          type="date"
           placeholder="Start Date"
           name="Start_date"
           id="start"
@@ -94,7 +129,7 @@ export default function ReportForm() {
         />
         <label>End Date</label>
         <input
-          type="text"
+          type="date"
           placeholder="End_date"
           name="End_date"
           id="start"

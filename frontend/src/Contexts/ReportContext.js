@@ -12,6 +12,10 @@ export const ReportReducer = (state, action) => {
             return {
                 Report: action.payload
             }
+        case "DELETE_REPORT":
+            return {
+                Report: state.Report.filter((r) => r._id !== action.payload._id)
+            }
         default:
             return state;
     }
