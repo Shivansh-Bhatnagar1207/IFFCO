@@ -7,7 +7,7 @@ const Project = new Schema({
     Project_Name: {
         type: String,
     },
-    Project_head: {
+    Project_Head: {
         type: String,
     },
     Start_date: {

@@ -32,7 +32,9 @@ export default function ReportDetials() {
           {Report && Report.length > 0 ? (
             Report.map((data) => <ReportCard key={data._id} Report={data} />)
           ) : (
-            <p>No Report Made</p>
+            <span className="bg-accent w-40 text-center mx-auto my-40 p-3 font-bold border border-black rounded-md">
+              No Report Available
+            </span>
           )}
         </div>
       </section>

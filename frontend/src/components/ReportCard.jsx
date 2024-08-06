@@ -1,7 +1,10 @@
 import React from "react";
-import {useReportContext} from '../hooks/UseReportContext'
+import { useReportContext } from "../hooks/UseReportContext";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { Link } from "react-router-dom";
+
 export default function ReportCard({ Report }) {
-  const {dispatch} = useReportContext()
+  const { dispatch } = useReportContext();
   const handleDeleteReport = async () => {
     try {
       const response = await fetch(`/report/reportdetail/${Report._id}`, {
@@ -9,18 +12,19 @@ export default function ReportCard({ Report }) {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-      const json = await response.json()
+      });
+      const json = await response.json();
       if (response.ok) {
-        dispatch({type : "DELETE_REPORT" , payload : json})
+        dispatch({ type: "DELETE_REPORT", payload: json });
         alert("Report Deleted Successfully");
-        window.location.reload()
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error in deleting Report :", error);
       alert("Error in Deleting Report");
     }
   };
+  
   const {
     Report_Type,
     Project_Name,
@@ -45,14 +49,20 @@ export default function ReportCard({ Report }) {
       </h3>
       <p className="p-2 w-[80vw] ">{Description}</p>
       <span className="float-right ">{Report_Type}</span>
-      <button>
-      <button
-        className="border-black border rounded-md p-0.5 font-semibold bg-bgc hover:bg-red-500 "
-        onClick={handleDeleteReport}
-      >
-        DELETE
-      </button>
-      </button>
+      <div className="flex gap-2">
+        <button
+          className="flex items-center border-black border rounded-md p-0.5 font-semibold bg-bgc hover:bg-red-500 "
+          onClick={handleDeleteReport}
+        >
+          <MdDelete /> DELETE
+        </button>
+        <Link
+          to={`/report/newreport/${Report._id}`}
+          className="flex items-center gap-1 border-black border rounded-md p-1 font-semibold bg-bgc hover:bg-green-500 "
+        >
+          <MdEdit /> EDIT
+        </Link>
+      </div>
     </div>
   );
 }

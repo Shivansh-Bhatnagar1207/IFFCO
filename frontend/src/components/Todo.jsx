@@ -41,7 +41,10 @@ const Todo = () => {
         <h2 className="p-3 text-2xl font-bold">Todo-List</h2>
         <hr className="h-px bg-gray-300 border-0" />
 
-        <div id="todo-add" className="flex m-auto w-[50%] gap-3 p-4">
+        <div
+          id="todo-add"
+          className="flex m-auto justify-center gap-5 w-[50vw] py-4"
+        >
           <input
             ref={inputRef}
             type="text"
@@ -49,13 +52,13 @@ const Todo = () => {
             id="todo-input"
             className="border border-black rounded-md p-1"
           />
-          <div
+          <button
             onClick={add}
             id="todo-add-btn"
             className="bg-sec grid place-items-center p-2 rounded-md hover:bg-pri text-white"
           >
             Create Task
-          </div>
+          </button>
         </div>
         <div
           id="todo-list"

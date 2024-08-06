@@ -18,6 +18,17 @@ const createReport = async (req, res) => {
     }
 }
 
+const getSingleReport = async (req, res) => {
+    const { id } = req.params
+    try {
+        const report = await Report.findOne({ _id: id })
+        res.status(200).json(report)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message })
+    }
+}
+
 const getReport = async (req, res) => {
     const report = await Report.find({}).sort({ TeamID: 1 })
     res.status(200).json(report)
@@ -39,9 +50,30 @@ const deleteReport = async (req, res) => {
     }
 }
 
+const updateReport = async (req, res) => {
+    const { id } = req.params
+    const { Report_Type,
+        Project_Name,
+        Start_date,
+        End_date,
+        Project_Head,
+        TeamID,
+        Description } = req.body
+
+    try {
+        const editReport = await Report.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(editReport)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message })
+    }
+}
+
 
 module.exports = {
     createReport,
     getReport,
     deleteReport,
+    getSingleReport,
+    updateReport
 }

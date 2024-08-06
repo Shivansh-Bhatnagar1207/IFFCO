@@ -8,6 +8,8 @@ import Report from './components/Report';
 import Todo from './components/Todo';
 import NewReport from './components/NewReport';
 import ReportDetials from './components/ReportDetials';
+import UpdateProject from './components/UpdateProject';
+import UpdateReport from './components/UpdateReport';
 
 
 function App() {
@@ -19,9 +21,11 @@ function App() {
           <Route path='/*' element={<Home />} />
           <Route path='/project/Dashboard' element={<Dashboard />} />
           <Route path='/project' element={<Project />} />
+          <Route path='/project/:id' element={<UpdateProject />} />
           <Route path='/task' element={<Todo />} />
           <Route path='/report' element={<Report />} />
           <Route path='/report/newreport' element={<NewReport />} />
+          <Route path='/report/newreport/:id' element={<UpdateReport />} />
           <Route path='/report/reportdetail' element={<ReportDetials />} />
         </Routes>
       </Router>

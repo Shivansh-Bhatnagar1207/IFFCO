@@ -14,7 +14,6 @@ const Dashboard = () => {
           throw new Error("Failed to fetch Project");
         }
         const json = await response.json();
-        console.log(json);
         dispatch({ type: "SET_PROJECT", payload: json });
       } catch (error) {
         console.error("Error fetching Project", error);
@@ -31,9 +30,15 @@ const Dashboard = () => {
         <h2 className="p-3 text-2xl font-bold ">Projects</h2>
         <hr className="h-px bg-gray-300 border-0" />
         <div className="grid gap-3 px-5 my-4 ">
-          {Project.map((data) => (
-            <ProjectCards key={data._id} Project={data} />
-          ))}
+          {Project && Project.length > 0 ? (
+            Project.map((data) => (
+              <ProjectCards key={data._id} Project={data} />
+            ))
+          ) : (
+            <span className="bg-accent w-40 text-center mx-auto my-40 p-3 font-bold border border-black rounded-md">
+              No Project Available
+            </span>
+          )}
         </div>
       </section>
     </div>

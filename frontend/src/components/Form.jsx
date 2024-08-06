@@ -7,7 +7,7 @@ export default function ProjectForm() {
     Project_Name: "",
     Start_date: "",
     End_date: "",
-    Project_head: "",
+    Project_Head: "",
     Description: "",
     Status: "Pending",
   });
@@ -43,6 +43,24 @@ export default function ProjectForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const {
+      Project_Name,
+      Project_Head,
+      Start_date,
+      End_date,
+      Description,
+      Status,
+    } = formData;
+    if (
+      !Project_Name ||
+      !Start_date ||
+      !End_date ||
+      !Project_Head ||
+      !Description ||
+      !Status
+    ) {
+      alert("Please Fill all the fields");
+    }
 
     const response = await fetch("/project/", {
       method: "POST",
@@ -58,7 +76,7 @@ export default function ProjectForm() {
         Project_Name: "",
         Start_date: "",
         End_date: "",
-        Project_head: "",
+        Project_Head: "",
         Description: "",
       });
       dispatch({ type: "CREATE_PROJECT", payload: data });
@@ -102,7 +120,7 @@ export default function ProjectForm() {
         <input
           type="text"
           placeholder="Project head"
-          name="Project_head"
+          name="Project_Head"
           value={formData.Project_Head}
           onChange={handleChange}
         />
