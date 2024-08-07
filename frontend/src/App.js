@@ -10,6 +10,8 @@ import NewReport from './components/NewReport';
 import ReportDetials from './components/ReportDetials';
 import UpdateProject from './components/UpdateProject';
 import UpdateReport from './components/UpdateReport';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
           <Route path='/report/newreport' element={<NewReport />} />
           <Route path='/report/newreport/:id' element={<UpdateReport />} />
           <Route path='/report/reportdetail' element={<ReportDetials />} />
+          <Route path='/profile/login' element={<Login />} />
+          <Route path='/profile/signup' element={<Signup />} />
         </Routes>
       </Router>
     </div>
