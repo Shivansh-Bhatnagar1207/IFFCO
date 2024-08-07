@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useReportContext } from "../hooks/UseReportContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function UpdateReport() {
   const { dispatch } = useReportContext();
@@ -14,6 +14,7 @@ export default function UpdateReport() {
     Description: "",
   });
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getSingleReport = async () => {
     const response = await fetch(`/report/reportdetail/${id}`);
@@ -116,6 +117,7 @@ export default function UpdateReport() {
         Description: "",
       });
       dispatch({ type: "CREATE_REPORT", payload: data });
+      navigate("/report/reportdetail");
     } else {
       throw new Error("Failed to Update Form");
     }

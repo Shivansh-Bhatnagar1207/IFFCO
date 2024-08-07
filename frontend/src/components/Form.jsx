@@ -33,7 +33,8 @@ export default function ProjectForm() {
       name === "End_date" ||
       name === "Project_Head" ||
       name === "TeamID" ||
-      name === "Description"
+      name === "Description" ||
+      name === "Status"
     ) {
       setFormData((prevData) => ({
         ...prevData,
@@ -78,6 +79,7 @@ export default function ProjectForm() {
         End_date: "",
         Project_Head: "",
         Description: "",
+        Status: "",
       });
       dispatch({ type: "CREATE_PROJECT", payload: data });
     } else {

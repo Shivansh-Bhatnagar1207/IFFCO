@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useProjectContext } from "../hooks/UseProjectContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function UpdateProject() {
   const { dispatch } = useProjectContext();
@@ -14,7 +14,7 @@ export default function UpdateProject() {
   });
 
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate();
 
   const getSingleProject = async () => {
     const response = await fetch(`/project/dashboard/${id}`);
@@ -24,7 +24,6 @@ export default function UpdateProject() {
       console.log(result.error);
     }
     if (response.ok) {
-      console.log(result);
       setFormData({
         Project_Name: result.Project_Name,
         Start_date: result.Start_date,
@@ -60,7 +59,8 @@ export default function UpdateProject() {
       name === "End_date" ||
       name === "Project_Head" ||
       name === "TeamID" ||
-      name === "Description"
+      name === "Description" ||
+      name === "Status"
     ) {
       setFormData((prevData) => ({
         ...prevData,
@@ -100,6 +100,7 @@ export default function UpdateProject() {
     if (response.ok) {
       alert("Form Edited Succesfully");
       dispatch({ type: "CREATE_PROJECT", payload: data });
+      navigate("/project/dashboard");
     } else {
       throw new Error("Failed To submit form");
     }
