@@ -4,15 +4,16 @@ import './index.css';
 import App from './App';
 import { ProjectContextProvider } from './Contexts/ProjectContext';
 import { ReportContextProvider } from './Contexts/ReportContext';
-
+import { AuthContextProvider } from './Contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
-  <ProjectContextProvider>
-    <ReportContextProvider>
-      <App />
-    </ReportContextProvider>
-  </ProjectContextProvider>
+  <AuthContextProvider>
+    <ProjectContextProvider>
+      <ReportContextProvider>
+        <App />
+      </ReportContextProvider>
+    </ProjectContextProvider>
+  </AuthContextProvider>
 );
 

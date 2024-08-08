@@ -6,8 +6,15 @@ import { TbReport } from "react-icons/tb";
 import { CgHome, CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { GoProjectRoadmap } from "react-icons/go";
+import { useLogout } from "../hooks/useLogout";
 
 const Navbar = () => {
+  const { logout } = useLogout();
+
+  function handleclick() {
+    logout();
+  }
+
   const menus = [
     { name: "Home", link: "/", icon: CgHome },
     { name: "Dashboard", link: "/project/dashboard", icon: MdOutlineDashboard },
@@ -59,6 +66,11 @@ const Navbar = () => {
             </h2>
           </Link>
         ))}
+      </div>
+      <div>
+        <button onClick={handleclick}>
+          <FaTasks />
+        </button>
       </div>
     </div>
   );
