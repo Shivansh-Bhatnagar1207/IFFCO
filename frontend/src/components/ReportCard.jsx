@@ -1,16 +1,22 @@
 import React from "react";
 import { useReportContext } from "../hooks/UseReportContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export default function ReportCard({ Report }) {
   const { dispatch } = useReportContext();
+  const { user } = useAuthContext();
   const handleDeleteReport = async () => {
+    if (!user) {
+      return;
+    }
     try {
       const response = await fetch(`/report/reportdetail/${Report._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${user.token}`,
         },
       });
       const json = await response.json();
@@ -24,7 +30,7 @@ export default function ReportCard({ Report }) {
       alert("Error in Deleting Report");
     }
   };
-  
+
   const {
     Report_Type,
     Project_Name,

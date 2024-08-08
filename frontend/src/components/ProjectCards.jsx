@@ -2,13 +2,22 @@ import React from "react";
 import { useProjectContext } from "../hooks/UseProjectContext";
 import { Link } from "react-router-dom";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { useAuthContext } from "../hooks/UseAuthContext";
 
 const ProjectCards = ({ Project }) => {
   const { dispatch } = useProjectContext();
+  const { user } = useAuthContext();
   const handleDeleteProject = async () => {
+    if (!user) {
+      return;
+    }
     try {
       const response = await fetch(`/project/dashboard/${Project._id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
       });
       const json = await response.json();
       if (response.ok) {
@@ -30,7 +39,7 @@ const ProjectCards = ({ Project }) => {
     Status,
   } = Project;
   console.log(Project);
-  
+
   return (
     <div className="p-4 border-solid border-gray-800 rounded-md bg-accent ">
       <h2 className="font-extrabold text-2xl text-center">{Project_Name}</h2>

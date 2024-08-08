@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useProjectContext } from "../hooks/UseProjectContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 
 export default function ProjectForm() {
   const { dispatch } = useProjectContext();
+  const { user } = useAuthContext();
   const [formData, setFormData] = useState({
     Project_Name: "",
     Start_date: "",
@@ -44,6 +46,12 @@ export default function ProjectForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      alert("You Must Be logged in");
+      return;
+    }
+
     const {
       Project_Name,
       Project_Head,
@@ -68,6 +76,7 @@ export default function ProjectForm() {
       body: JSON.stringify({ ...formData }),
       headers: {
         "Content-type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const data = await response.json();

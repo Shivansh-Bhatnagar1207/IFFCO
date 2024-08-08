@@ -1,10 +1,12 @@
 const Project = require('../models/Project')
 
 
+
 const createProject = async (req, res) => {
+    const user_id = req.user._id
     const { Project_Name, Project_Head, Start_date, End_date, Description, Status } = req.body
     try {
-        const project = await Project.create({ Project_Name, Project_Head, Start_date, End_date, Description, Status })
+        const project = await Project.create({ Project_Name, Project_Head, Start_date, End_date, Description, Status, user_id })
         res.status(200).json(project)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -22,8 +24,9 @@ const getSingleProject = async (req, res) => {
 }
 
 const getProject = async (req, res) => {
+    const user_id = req.user._id
     try {
-        const projects = await Project.find({});
+        const projects = await Project.find({user_id});
         res.status(200).json(projects);
     } catch (error) {
         console.error('Error fetching projects:', error);
@@ -60,4 +63,4 @@ const editProject = async (req, res) => {
     }
 }
 
-module.exports = { createProject, getSingleProject, getProject, deleteProject,editProject }
+module.exports = { createProject, getSingleProject, getProject, deleteProject, editProject }

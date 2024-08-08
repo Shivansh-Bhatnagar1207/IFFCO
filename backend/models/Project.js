@@ -21,6 +21,10 @@ const Project = new Schema({
     },
     Status: {
         type: String
+    },
+    user_id: {
+        type: String,
+        require: true
     }
 })
 

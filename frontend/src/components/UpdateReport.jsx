@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useReportContext } from "../hooks/UseReportContext";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/UseAuthContext";
 
 export default function UpdateReport() {
   const { dispatch } = useReportContext();
+  const { user } = useAuthContext();
   const [formData, setFormData] = useState({
     Report_Type: "TASK SUMMARY",
     Project_Name: "",
@@ -17,7 +19,9 @@ export default function UpdateReport() {
   const navigate = useNavigate();
 
   const getSingleReport = async () => {
-    const response = await fetch(`/report/reportdetail/${id}`);
+    const response = await fetch(`/report/reportdetail/${id}`, {
+      "Authorization": `Bearer ${user.token}`,
+    });
     const result = await response.json();
 
     if (!response.ok) {
@@ -75,6 +79,9 @@ export default function UpdateReport() {
 
   const handleUpadate = async (e) => {
     e.preventDefault();
+    if(!user){
+      return
+    }
     const {
       Report_Type,
       Project_Name,
@@ -102,6 +109,7 @@ export default function UpdateReport() {
       body: JSON.stringify({ ...formData }),
       headers: {
         "Content-type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     });
     const data = await response.json();

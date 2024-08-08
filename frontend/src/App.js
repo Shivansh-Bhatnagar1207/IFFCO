@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -12,9 +12,11 @@ import UpdateProject from './components/UpdateProject';
 import UpdateReport from './components/UpdateReport';
 import Profile from './components/Profile'
 import Signup from './components/Signup';
+import { useAuthContext } from './hooks/UseAuthContext';
 
 
 function App() {
+  const { user } = useAuthContext()
   return (
     <div className="flex ">
       <Router>
@@ -30,7 +32,7 @@ function App() {
           <Route path='/report/newreport/:id' element={<UpdateReport />} />
           <Route path='/report/reportdetail' element={<ReportDetials />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/profile/signup' element={<Signup />} />
+          <Route path='/profile/signup' element={!user ? (<Signup />) : <Navigate to="/" />} />
         </Routes>
       </Router>
     </div>

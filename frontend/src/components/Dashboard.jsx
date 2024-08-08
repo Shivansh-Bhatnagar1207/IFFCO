@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
 import ProjectCards from "./ProjectCards";
 import { useProjectContext } from "../hooks/UseProjectContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 
 const Dashboard = () => {
   const { Project, dispatch } = useProjectContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await fetch("/project/dashboard");
+        const response = await fetch("/project/dashboard", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
 
         if (!response) {
           throw new Error("Failed to fetch Project");
@@ -19,8 +26,10 @@ const Dashboard = () => {
         console.error("Error fetching Project", error);
       }
     };
-    fetchdata();
-  }, [dispatch]);
+    if (user) {
+      fetchdata();
+    }
+  }, [dispatch, user]);
   return (
     <div className="w-screen h-screen bg-bgc overflow-auto ">
       <header className="bg-pri h-[8vh] font-bold text-white p-2 text-xl sticky top-0">

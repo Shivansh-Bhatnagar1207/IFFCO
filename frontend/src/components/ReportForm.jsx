@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useReportContext } from "../hooks/UseReportContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 
 export default function ReportForm() {
   const { dispatch } = useReportContext();
+  const { user } = useAuthContext();
   const [formData, setFormData] = useState({
     Report_Type: "TASK SUMMARY",
     Project_Name: "",
@@ -47,6 +49,12 @@ export default function ReportForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      alert("You Must Be Logged In");
+      return;
+    }
+
     const {
       Report_Type,
       Project_Name,
@@ -74,6 +82,7 @@ export default function ReportForm() {
       body: JSON.stringify({ ...formData }),
       headers: {
         "Content-type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     });
     const data = await response.json();

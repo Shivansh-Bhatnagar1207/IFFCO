@@ -2,6 +2,7 @@ const Report = require('../models/Report')
 
 const createReport = async (req, res) => {
     const { Report_Type, Project_Name, Start_date, End_date, Project_Head, TeamID, Description } = req.body
+    const user_id = req.user._id
     try {
         const reportgen = await Report.create({
             Report_Type,
@@ -10,7 +11,8 @@ const createReport = async (req, res) => {
             End_date,
             Project_Head,
             TeamID,
-            Description
+            Description,
+            user_id
         });
         res.status(200).json(reportgen);
     } catch (error) {
@@ -30,7 +32,8 @@ const getSingleReport = async (req, res) => {
 }
 
 const getReport = async (req, res) => {
-    const report = await Report.find({}).sort({ TeamID: 1 })
+    const user_id = req.user._id
+    const report = await Report.find({ user_id })
     res.status(200).json(report)
 }
 

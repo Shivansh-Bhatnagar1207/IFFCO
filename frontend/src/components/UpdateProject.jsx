@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useProjectContext } from "../hooks/UseProjectContext";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/UseAuthContext";
 
 export default function UpdateProject() {
   const { dispatch } = useProjectContext();
+  const { user } = useAuthContext();
   const [formData, setFormData] = useState({
     Project_Name: "",
     Start_date: "",
@@ -17,7 +19,13 @@ export default function UpdateProject() {
   const navigate = useNavigate();
 
   const getSingleProject = async () => {
-    const response = await fetch(`/project/dashboard/${id}`);
+    const response = await fetch(`/project/dashboard/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     const result = await response.json();
 
     if (!response.ok) {
@@ -70,6 +78,9 @@ export default function UpdateProject() {
   };
   const handleEdit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      return;
+    }
     const {
       Project_Name,
       Project_Head,
@@ -94,6 +105,7 @@ export default function UpdateProject() {
       body: JSON.stringify({ ...formData }),
       headers: {
         "Content-type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     });
     const data = await response.json();
